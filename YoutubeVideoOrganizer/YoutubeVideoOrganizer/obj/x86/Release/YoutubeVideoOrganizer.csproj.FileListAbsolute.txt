@@ -1,0 +1,13 @@
+D:\henri\My Documents\Visual Studio 2010\Projects\B - Henri\YoutubeVideoOrganizer\YoutubeVideoOrganizer\bin\Release\YoutubeVideoOrganizer.exe
+D:\henri\My Documents\Visual Studio 2010\Projects\B - Henri\YoutubeVideoOrganizer\YoutubeVideoOrganizer\bin\Release\YoutubeVideoOrganizer.pdb
+D:\henri\My Documents\Visual Studio 2010\Projects\B - Henri\YoutubeVideoOrganizer\YoutubeVideoOrganizer\bin\Release\Google.GData.Client.dll
+D:\henri\My Documents\Visual Studio 2010\Projects\B - Henri\YoutubeVideoOrganizer\YoutubeVideoOrganizer\bin\Release\Google.GData.YouTube.dll
+D:\henri\My Documents\Visual Studio 2010\Projects\B - Henri\YoutubeVideoOrganizer\YoutubeVideoOrganizer\bin\Release\Newtonsoft.Json.dll
+D:\henri\My Documents\Visual Studio 2010\Projects\B - Henri\YoutubeVideoOrganizer\YoutubeVideoOrganizer\bin\Release\Google.GData.Extensions.dll
+D:\henri\My Documents\Visual Studio 2010\Projects\B - Henri\YoutubeVideoOrganizer\YoutubeVideoOrganizer\obj\x86\Release\ResolveAssemblyReference.cache
+D:\henri\My Documents\Visual Studio 2010\Projects\B - Henri\YoutubeVideoOrganizer\YoutubeVideoOrganizer\obj\x86\Release\YoutubeVideoOrganizer.Form1.resources
+D:\henri\My Documents\Visual Studio 2010\Projects\B - Henri\YoutubeVideoOrganizer\YoutubeVideoOrganizer\obj\x86\Release\YoutubeVideoOrganizer.Properties.Resources.resources
+D:\henri\My Documents\Visual Studio 2010\Projects\B - Henri\YoutubeVideoOrganizer\YoutubeVideoOrganizer\obj\x86\Release\GenerateResource.read.1.tlog
+D:\henri\My Documents\Visual Studio 2010\Projects\B - Henri\YoutubeVideoOrganizer\YoutubeVideoOrganizer\obj\x86\Release\GenerateResource.write.1.tlog
+D:\henri\My Documents\Visual Studio 2010\Projects\B - Henri\YoutubeVideoOrganizer\YoutubeVideoOrganizer\obj\x86\Release\YoutubeVideoOrganizer.exe
+D:\henri\My Documents\Visual Studio 2010\Projects\B - Henri\YoutubeVideoOrganizer\YoutubeVideoOrganizer\obj\x86\Release\YoutubeVideoOrganizer.pdb
