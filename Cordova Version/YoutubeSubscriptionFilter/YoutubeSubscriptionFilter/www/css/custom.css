@@ -1,0 +1,30 @@
+#main {
+    position: relative;
+}
+
+.header {
+    min-height: 50px;
+    height: 10%;
+    position: relative;
+    /*background: #EC4B45;*/
+    background: #FFF;
+}
+
+/************ Temporary *************/
+#main {
+    background: lightgray;
+    height: 600px;
+    width: 800px;    
+}
+.tab {
+    float: left;
+    width: 150px;
+    height:100%;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    background: #C9181E;
+}
+
+
+
+/*  */
