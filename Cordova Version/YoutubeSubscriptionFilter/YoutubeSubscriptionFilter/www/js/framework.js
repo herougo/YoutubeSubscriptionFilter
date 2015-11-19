@@ -1,4 +1,9 @@
-"use strict"
+"use strict";
+
+/* KNOWN ISSUES
+Youtube Api call does not order by published date 
+(ie YoutubeApi.getVideos('RoosterTeeth', ["h1xHP-NpJkY"], null, function(yo) { console.log(yo); });)
+*/
 
 var Main = {};
 Main.path;
@@ -14,7 +19,7 @@ Framework.onReady = function() {
     Framework.original_window_width = $(window).width();
 
     Main.path = $('#main');
-    Main.path.css('height', Framework.original_window_height).css('width', Framework.original_window_height);
+    Main.path.css('height', Framework.original_window_height).css('width', Framework.original_window_width);
 };
 
 $(document).ready(function () {
@@ -60,15 +65,17 @@ YoutubeApi.key = 'AIzaSyCgPP1AJYXPnd37DvDmGVLwqbJDesABROc';
     }
 }]
 Example Call: 
-YoutubeApi.getVideos('JeremyJahns', ["35wyIKt_6gc"], function(yo) { console.log(yo); });
+YoutubeApi.getVideos('JeremyJahns', ["35wyIKt_6gc"], null, function(yo) { console.log(yo); });
 */
-YoutubeApi.getVideos = function (user, stop_ids, onComplete) {
+
+YoutubeApi.getVideos = function (user, stop_ids, uploadKey, onComplete) {
     //Get Videos
     function getVids(pid, pageToken) {
         var params = {
             part: 'snippet',
             maxResults: max_results,
             playlistId: pid,
+            order: 'date',
             key: YoutubeApi.key
         };
         if (pageToken) { params.pageToken = pageToken; }
@@ -78,16 +85,16 @@ YoutubeApi.getVideos = function (user, stop_ids, onComplete) {
             function (data) {
                 iterator_len = Math.min(max_results, data.items.length);
                 for (i = 0; i < iterator_len; i++) {
+                    if (stop_ids.indexOf(data.items[i].snippet.resourceId.videoId) !== -1) {
+                        done = true;
+                        break;
+                    }
                     output.results.push({
                         title: data.items[i].snippet.title,
                         description: data.items[i].snippet.description,
                         videoId: data.items[i].snippet.resourceId.videoId,
                         thumbnails: jQuery.extend({}, data.items[i].snippet.thumbnails)
                     });
-                    if (stop_ids.indexOf(data.items[i].snippet.resourceId.videoId) !== -1) {
-                        done = true;
-                        break;
-                    }
                 }
 
                 if (done || !data.nextPageToken) {
@@ -106,22 +113,27 @@ YoutubeApi.getVideos = function (user, stop_ids, onComplete) {
     output.results = [];
 
     // Get Uploads Playlist
-    $.get(
-       "https://www.googleapis.com/youtube/v3/channels", {
-           part: 'contentDetails',
-           forUsername: user,
-           key: YoutubeApi.key
-       }, function (data) {
-           if (data.items.length !== 1) {
-               console.log("Caution: Incorrect number of upload keys for " + user + ": " + data.items.length);
-               onComplete && onComplete();
-           } else {
-               $.each(data.items, function (i, item) {
-                   output.uploadKey = item.contentDetails.relatedPlaylists.uploads;
-                   getVids(output.uploadKey);
-               });
-           }
-       }).fail(onComplete);
+    if (uploadKey) {
+        output.uploadKey = uploadKey;
+        getVids(uploadKey);
+    } else {
+        $.get(
+           "https://www.googleapis.com/youtube/v3/channels", {
+               part: 'contentDetails',
+               forUsername: user,
+               key: YoutubeApi.key
+           }, function (data) {
+               if (data.items.length !== 1) {
+                   console.log("Caution: Incorrect number of upload keys for " + user + ": " + data.items.length);
+                   onComplete && onComplete();
+               } else {
+                   $.each(data.items, function (i, item) {
+                       output.uploadKey = item.contentDetails.relatedPlaylists.uploads;
+                       getVids(output.uploadKey);
+                   });
+               }
+           }).fail(onComplete);
+    }
 };
 
 Framework.testYoutubeApi = function (user) {
